@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Omolade Ori Table Water — Private Business Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.29.0/dist/tabler-icons.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#09090b;--c1:#111113;--c2:#18181b;--c3:#1f1f23;--c4:#27272a;--c5:#3f3f46;
+  --bdr:rgba(255,255,255,.06);--bdr2:rgba(255,255,255,.11);--bdr3:rgba(255,255,255,.18);
+  --txt:#fafafa;--txt2:#a1a1aa;--muted:#52525b;
+  --blue:#3b82f6;--green:#10b981;--red:#f43f5e;--warn:#f59e0b;--purple:#8b5cf6;--cyan:#06b6d4;
+  --fh:'Space Grotesk',sans-serif;--fb:'Inter',sans-serif;
+  --sw:244px;--hh:58px;--r:12px;
+}
+html,body{height:100%;background:var(--bg);color:var(--txt);font-family:var(--fb);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--c4);border-radius:2px}
+.hidden{display:none!important}
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:9px;font-size:12.5px;font-weight:600;cursor:pointer;border:none;transition:all .18s;white-space:nowrap;font-family:var(--fb)}
+.btn i{font-size:15px}
+.btn-primary{background:var(--blue);color:#fff;box-shadow:0 2px 12px rgba(59,130,246,.3)}
+.btn-primary:hover{background:#2563eb;transform:translateY(-1px);box-shadow:0 4px 20px rgba(59,130,246,.45)}
+.btn-success{background:var(--green);color:#fff}
+.btn-success:hover{background:#059669}
+.btn-danger{background:var(--red);color:#fff}
+.btn-outline{background:transparent;border:1px solid var(--bdr2);color:var(--txt2)}
+.btn-outline:hover{background:var(--c2);color:var(--txt)}
+.btn-ghost{background:transparent;border:none;color:var(--txt2);cursor:pointer;font-family:var(--fb)}
+.btn-ghost:hover{color:var(--txt)}
+.btn-wa{background:#25d366;color:#fff}
+.btn-wa:hover{background:#1da851}
+.btn-sm{padding:5px 12px;font-size:11.5px}
+.btn-full{width:100%;justify-content:center}
+.btn-lg{padding:13px 24px;font-size:14px}
+/* PILLS */
+.pill{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;font-size:10.5px;font-weight:600}
+.pg{background:rgba(16,185,129,.12);color:#10b981}
+.pr{background:rgba(244,63,94,.12);color:#f43f5e}
+.pb{background:rgba(59,130,246,.12);color:#3b82f6}
+.pw{background:rgba(245,158,11,.12);color:#f59e0b}
+.pp{background:rgba(139,92,246,.12);color:#8b5cf6}
+.pc{background:rgba(6,182,212,.12);color:#06b6d4}
+/* FORM */
+.fg{display:flex;flex-direction:column;gap:5px;margin-bottom:14px}
+.fg label{font-size:11.5px;color:var(--txt2);font-weight:500}
+.req{color:var(--red);margin-left:2px}
+.fg input,.fg select,.fg textarea{background:var(--c3);border:1px solid var(--bdr2);border-radius:9px;padding:10px 13px;color:var(--txt);font-family:var(--fb);font-size:13px;outline:none;transition:border-color .15s,box-shadow .15s;width:100%}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--muted)}
+.fg select option{background:var(--c2)}
+.fg textarea{resize:vertical;min-height:78px}
+.fgrow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+/* TABLE */
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{color:var(--muted);font-weight:500;text-align:left;padding:8px 12px;border-bottom:1px solid var(--bdr);font-size:10px;text-transform:uppercase;letter-spacing:.8px;white-space:nowrap}
+td{padding:11px 12px;border-bottom:1px solid rgba(255,255,255,.03);color:var(--txt2);vertical-align:middle}
+tr:last-child td{border:none}
+tr:hover td{background:rgba(255,255,255,.015)}
+.tn{font-weight:500;color:var(--txt)}
+.tg{color:var(--green);font-weight:600}.tr{color:var(--red);font-weight:600}
+.tb{color:var(--blue);font-weight:600}.tw{color:var(--warn);font-weight:600}
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--c2);border:1px solid var(--bdr2);border-radius:12px;padding:13px 18px;font-size:13px;font-weight:500;display:flex;align-items:center;gap:10px;z-index:9999;transform:translateY(90px);opacity:0;transition:all .35s cubic-bezier(.4,0,.2,1);max-width:340px;box-shadow:0 16px 48px rgba(0,0,0,.5)}
+.toast.show{transform:translateY(0);opacity:1}
+.tok i{color:var(--green)}.terr i{color:var(--red)}
+/* MODAL */
+.mwrap{display:none;position:fixed;inset:0;z-index:700;align-items:center;justify-content:center;padding:16px}
+.mwrap.show{display:flex}
+.mbg{position:absolute;inset:0;background:rgba(0,0,0,.82);backdrop-filter:blur(6px)}
+.mbox{background:var(--c2);border:1px solid var(--bdr2);border-radius:16px;padding:28px;width:100%;max-width:480px;position:relative;z-index:1;box-shadow:0 32px 80px rgba(0,0,0,.6);animation:popIn .25s cubic-bezier(.4,0,.2,1)}
+@keyframes popIn{from{opacity:0;transform:scale(.95) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.mhd{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
+.mtitle{font-family:var(--fh);font-size:17px;font-weight:700}
+.mclose{background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;padding:2px;transition:color .15s}
+.mclose:hover{color:var(--txt)}
+/* OVERLAY */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:299}
+.overlay.show{display:block}
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+/* ═══ LOGIN ═══ */
+#loginScreen{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;background:var(--bg);overflow:auto}
+#loginScreen::before{content:'';position:fixed;top:-25%;left:-15%;width:550px;height:550px;border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,.07),transparent 65%);pointer-events:none}
+#loginScreen::after{content:'';position:fixed;bottom:-25%;right:-15%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(16,185,129,.05),transparent 65%);pointer-events:none}
+.lbox{background:var(--c1);border:1px solid var(--bdr2);border-radius:20px;padding:44px 40px;width:100%;max-width:420px;position:relative;z-index:1;box-shadow:0 40px 100px rgba(0,0,0,.55);animation:fadeUp .4s cubic-bezier(.4,0,.2,1)}
+.lbrand{text-align:center;margin-bottom:32px}
+.llogo{width:64px;height:64px;border-radius:18px;background:linear-gradient(135deg,var(--blue),var(--green));display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:0 8px 32px rgba(59,130,246,.4)}
+.llogo i{font-size:30px;color:#fff}
+.lbrand-name{font-family:var(--fh);font-size:18px;font-weight:700;letter-spacing:.02em;margin-bottom:3px}
+.lbrand-sub{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+.ldivider{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:11px;margin:4px 0 22px}
+.ldivider::before,.ldivider::after{content:'';flex:1;height:1px;background:var(--bdr)}
+.lalert{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border-radius:9px;font-size:12px;line-height:1.55;margin-bottom:16px}
+.lalert.err{background:rgba(244,63,94,.08);border:1px solid rgba(244,63,94,.2);color:#fda4af}
+.lalert.ok{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);color:#6ee7b7}
+.lalert.info{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);color:#93c5fd}
+.lalert i{font-size:16px;flex-shrink:0;margin-top:1px}
+.lfooter{text-align:center;margin-top:22px;border-top:1px solid var(--bdr);padding-top:18px}
+.lfooter p{font-size:11.5px;color:var(--muted);margin-bottom:10px}
+.wa-btn{display:inline-flex;align-items:center;gap:7px;padding:8px 16px;border-radius:9px;background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.2);color:#4ade80;font-size:12px;font-weight:500;cursor:pointer;text-decoration:none;transition:all .15s}
+.wa-btn:hover{background:rgba(37,211,102,.15)}
+.lock-notice{display:flex;align-items:center;justify-content:center;gap:5px;font-size:10.5px;color:var(--muted);margin-top:14px}
+.lock-notice i{font-size:13px}
+/* pending card */
+.pending-card{text-align:center;padding:8px 0}
+.pending-icon{width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
+.pending-icon.ok{background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.25)}
+.pending-icon.ok i{font-size:26px;color:var(--green)}
+.pending-icon.wait{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.25)}
+.pending-icon.wait i{font-size:26px;color:var(--warn)}
+.pending-title{font-family:var(--fh);font-size:18px;font-weight:700;margin-bottom:8px}
+.pending-body{font-size:13px;color:var(--txt2);line-height:1.65;margin-bottom:18px}
+.info-card{background:var(--c3);border:1px solid var(--bdr);border-radius:10px;padding:14px 16px;text-align:left;margin-bottom:18px}
+.info-row{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--txt2);padding:4px 0}
+.info-row i{color:var(--green);font-size:13px;flex-shrink:0}
+/* ═══ SIDEBAR ═══ */
+.sidebar{width:var(--sw);background:var(--c1);border-right:1px solid var(--bdr);display:flex;flex-direction:column;position:fixed;inset:0 auto 0 0;z-index:300;transition:transform .25s cubic-bezier(.4,0,.2,1);overflow-y:auto}
+.logo-area{padding:20px 18px 16px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:11px}
+.logo-mark{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--blue),var(--green));display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 14px rgba(59,130,246,.3)}
+.logo-mark i{font-size:18px;color:#fff}
+.logo-name{font-family:var(--fh);font-size:13px;font-weight:700;line-height:1.2}
+.logo-tag{font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
+nav{flex:1;padding:12px 10px}
+.ns{font-size:9px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);padding:10px 10px 4px;margin-top:6px}
+.ni{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;cursor:pointer;font-size:13px;color:var(--txt2);transition:all .15s;margin-bottom:1px;position:relative}
+.ni i{font-size:17px;width:20px;flex-shrink:0}
+.ni:hover{background:var(--c2);color:var(--txt)}
+.ni.active{background:rgba(59,130,246,.12);color:var(--blue);font-weight:600}
+.ni.active::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:3px;height:56%;background:var(--blue);border-radius:0 3px 3px 0}
+.nibadge{margin-left:auto;background:var(--red);color:#fff;font-size:9px;font-weight:700;border-radius:20px;padding:2px 6px;min-width:18px;text-align:center}
+.sf{padding:14px 16px;border-top:1px solid var(--bdr)}
+.sf-role{font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.sf-name{font-size:13px;font-weight:600;margin-bottom:3px}
+.sf-online{display:flex;align-items:center;gap:5px;font-size:10.5px;color:var(--green)}
+.sf-online::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);display:block;box-shadow:0 0 5px var(--green)}
+/* ═══ TOPBAR ═══ */
+.main{margin-left:var(--sw);flex:1;display:flex;flex-direction:column;min-height:100vh}
+.topbar{height:var(--hh);background:var(--c1);border-bottom:1px solid var(--bdr);padding:0 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;gap:12px}
+.tb-left{display:flex;align-items:center;gap:12px}
+.tb-title{font-family:var(--fh);font-size:16px;font-weight:700}
+.tb-right{display:flex;align-items:center;gap:8px}
+.hbg{display:none;background:none;border:none;color:var(--txt);font-size:22px;cursor:pointer;padding:4px}
+.icon-btn{width:36px;height:36px;border-radius:9px;background:var(--c2);border:1px solid var(--bdr2);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--txt2);position:relative;transition:all .15s}
+.icon-btn:hover{color:var(--txt);background:var(--c3)}
+.nbadge{position:absolute;top:-3px;right:-3px;background:var(--red);color:#fff;font-size:9px;font-weight:700;border-radius:20px;padding:1px 4px;border:2px solid var(--bg)}
+.uchip{display:flex;align-items:center;gap:8px;padding:4px 10px 4px 4px;border-radius:10px;background:var(--c2);border:1px solid var(--bdr2);cursor:pointer;transition:background .15s}
+.uchip:hover{background:var(--c3)}
+.uav{width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,var(--blue),var(--green));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff}
+.uname{font-size:11.5px;font-weight:600;line-height:1.2}
+.urole{font-size:9.5px;color:var(--muted)}
+/* ═══ NOTIF PANEL ═══ */
+.npanel{position:absolute;top:calc(100% + 10px);right:0;width:310px;background:var(--c2);border:1px solid var(--bdr2);border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.5);z-index:500;overflow:hidden;animation:popIn .2s ease}
+.nphd{padding:14px 16px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between}
+.nptitle{font-family:var(--fh);font-size:13px;font-weight:700}
+.npclear{font-size:11px;color:var(--blue);cursor:pointer;background:none;border:none;padding:0}
+.nitem{display:flex;gap:10px;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.03);transition:background .15s;cursor:default}
+.nitem:last-child{border:none}
+.ndot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.ntxt{font-size:12px;color:var(--txt2);line-height:1.5}
+.ntxt strong{color:var(--txt)}
+.ntime{font-size:10px;color:var(--muted);margin-top:2px}
+.nempty{padding:28px;text-align:center;color:var(--muted);font-size:12px}
+/* ═══ CONTENT ═══ */
+.app{display:flex;min-height:100vh}
+.content{padding:24px;flex:1}
+.page{display:none}.page.active{display:block;animation:fadeUp .2s ease}
+.ph{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:22px;flex-wrap:wrap;gap:12px}
+.ph h2{font-family:var(--fh);font-size:20px;font-weight:700}
+.ph-sub{font-size:12px;color:var(--muted);margin-top:2px}
+.brow{display:flex;gap:8px;flex-wrap:wrap}
+/* ═══ STAT CARDS ═══ */
+.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:12px;margin-bottom:20px}
+.sc{background:var(--c1);border:1px solid var(--bdr);border-radius:var(--r);padding:18px;position:relative;overflow:hidden;transition:border-color .18s,transform .18s,box-shadow .18s}
+.sc:hover{border-color:var(--bdr2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.scg{position:absolute;top:-40%;right:-25%;width:90px;height:90px;border-radius:50%;opacity:.07;pointer-events:none}
+.sc.blue .scg{background:var(--blue)}.sc.green .scg{background:var(--green)}
+.sc.red .scg{background:var(--red)}.sc.warn .scg{background:var(--warn)}
+.sc.purple .scg{background:var(--purple)}.sc.cyan .scg{background:var(--cyan)}
+.sc-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.sc-icon i{font-size:17px}
+.sc.blue .sc-icon{background:rgba(59,130,246,.12);color:var(--blue)}
+.sc.green .sc-icon{background:rgba(16,185,129,.12);color:var(--green)}
+.sc.red .sc-icon{background:rgba(244,63,94,.12);color:var(--red)}
+.sc.warn .sc-icon{background:rgba(245,158,11,.12);color:var(--warn)}
+.sc.purple .sc-icon{background:rgba(139,92,246,.12);color:var(--purple)}
+.sc.cyan .sc-icon{background:rgba(6,182,212,.12);color:var(--cyan)}
+.sc-lbl{font-size:11px;color:var(--muted);margin-bottom:5px}
+.sc-val{font-family:var(--fh);font-size:23px;font-weight:700;line-height:1}
+.sc-sub{font-size:11px;color:var(--muted);margin-top:6px}
+/* ═══ CARDS ═══ */
+.card{background:var(--c1);border:1px solid var(--bdr);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.ctitle{font-family:var(--fh);font-size:14px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.ctitle small{font-size:11px;color:var(--muted);font-weight:400;font-family:var(--fb)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+/* ═══ EMPTY STATE ═══ */
+.es{text-align:center;padding:44px 20px}
+.es i{font-size:44px;display:block;margin-bottom:14px;opacity:.22;color:var(--txt2)}
+.es h3{font-family:var(--fh);font-size:15px;font-weight:600;color:var(--txt2);margin-bottom:6px}
+.es p{font-size:12px;color:var(--muted);line-height:1.65;max-width:260px;margin:0 auto 18px}
+/* ═══ FORM CARD ═══ */
+.fcard{background:var(--c1);border:1px solid var(--bdr);border-radius:var(--r);padding:22px;margin-bottom:16px}
+.ftitle{font-family:var(--fh);font-size:15px;font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.ftitle i{color:var(--blue);font-size:18px}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.factions{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.fmsg{font-size:12px;margin-top:12px;padding:10px 14px;border-radius:9px;display:none;align-items:center;gap:8px}
+.fmsg.ok{background:rgba(16,185,129,.09);border:1px solid rgba(16,185,129,.2);color:#6ee7b7;display:flex}
+.fmsg.err{background:rgba(244,63,94,.09);border:1px solid rgba(244,63,94,.2);color:#fda4af;display:flex}
+/* ═══ PROFIT PREVIEW ═══ */
+.pprev{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.18);border-radius:10px;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;margin:14px 0}
+.pprev-lbl{font-size:12px;color:var(--green);display:flex;align-items:center;gap:6px}
+.pprev-val{font-family:var(--fh);font-size:22px;font-weight:700;color:var(--green)}
+/* ═══ WORKERS ═══ */
+.wr{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.wr:last-child{border:none}
+.wav{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.wname{font-size:13px;color:var(--txt);font-weight:500}.wrole{font-size:11px;color:var(--muted)}
+.adots{display:flex;gap:5px;margin-left:auto}
+.adot{width:9px;height:9px;border-radius:50%}
+/* ═══ COMPLAINTS ═══ */
+.crow{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.04);align-items:flex-start}
+.crow:last-child{border:none}
+.cdot{width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.ctxt{font-size:13px;color:var(--txt);font-weight:500;margin-bottom:3px}
+.cmeta{font-size:11px;color:var(--muted)}
+/* ═══ ACTIVITY LOG ═══ */
+.aitem{display:flex;gap:12px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.03)}
+.aitem:last-child{border:none}
+.adot2{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.atxt{font-size:12.5px;color:var(--txt2);flex:1;line-height:1.45}
+.atxt strong{color:var(--txt)}
+.atime{font-size:10.5px;color:var(--muted);white-space:nowrap}
+/* ═══ REPORTS ═══ */
+.sbgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:12px;margin-bottom:20px}
+.sb{background:var(--c2);border:1px solid var(--bdr);border-radius:10px;padding:14px}
+.sb-lbl{font-size:11px;color:var(--muted);margin-bottom:4px}
+.sb-val{font-family:var(--fh);font-size:21px;font-weight:700}
+/* ═══ PROGRESS ═══ */
+.prow{display:flex;align-items:center;gap:12px;margin-bottom:11px;font-size:12px}
+.plbl{min-width:110px;color:var(--txt2)}
+.pbar{flex:1;height:5px;border-radius:3px;background:var(--c4);overflow:hidden}
+.pbf{height:100%;border-radius:3px}
+.pval{min-width:32px;text-align:right;color:var(--muted);font-size:11px}
+/* ═══ DONUT LEGEND ═══ */
+.dlwrap{display:flex;align-items:center;gap:22px}
+.dlcanvas{position:relative;width:128px;height:128px;flex-shrink:0}
+.dlcenter{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none}
+.dlcv{font-family:var(--fh);font-size:17px;font-weight:700}
+.dlcl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.dlleg{flex:1;display:flex;flex-direction:column;gap:10px}
+.dlrow{display:flex;align-items:center;gap:8px;font-size:12px}
+.dldot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+.dllbl{flex:1;color:var(--txt2)}.dlbar{width:56px;height:4px;border-radius:2px;background:var(--c4);overflow:hidden}
+.dlbf{height:100%;border-radius:2px}.dlpct{color:var(--muted);font-size:11px;min-width:28px;text-align:right}
+/* ═══ WELCOME MODAL ═══ */
+.wmwrap{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.88);backdrop-filter:blur(8px)}
+.wmbox{background:var(--c2);border:1px solid rgba(59,130,246,.22);border-radius:20px;padding:38px;max-width:440px;width:100%;text-align:center;box-shadow:0 40px 100px rgba(0,0,0,.6);position:relative;overflow:hidden;animation:popIn .35s cubic-bezier(.4,0,.2,1)}
+.wmbox::before{content:'';position:absolute;top:-70px;left:50%;transform:translateX(-50%);width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,.12),transparent 65%);pointer-events:none}
+.wmicon{width:68px;height:68px;border-radius:18px;background:linear-gradient(135deg,var(--blue),var(--green));display:flex;align-items:center;justify-content:center;margin:0 auto 18px;box-shadow:0 8px 28px rgba(59,130,246,.4)}
+.wmicon i{font-size:32px;color:#fff}
+.wmtitle{font-family:var(--fh);font-size:22px;font-weight:700;margin-bottom:6px}
+.wmname{color:var(--blue)}
+.wmsub{font-size:13px;color:var(--txt2);line-height:1.65;margin-bottom:22px}
+.wmfeats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:26px;text-align:left}
+.wmf{background:var(--c3);border:1px solid var(--bdr);border-radius:9px;padding:10px 12px;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--txt2)}
+.wmf i{font-size:15px;color:var(--blue);flex-shrink:0}
+/* ═══ TOUR ═══ */
+.tveil{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:1500;pointer-events:none;transition:background .4s}
+.tveil.on{background:rgba(0,0,0,.78);pointer-events:all}
+.tspot{position:fixed;z-index:1600;border-radius:13px;box-shadow:0 0 0 9999px rgba(0,0,0,.78);border:2px solid rgba(59,130,246,.6);transition:all .4s cubic-bezier(.4,0,.2,1);pointer-events:none;display:none}
+.tbub{position:fixed;z-index:1700;background:var(--c2);border:1px solid rgba(59,130,246,.35);border-radius:16px;padding:22px 22px 18px;width:296px;box-shadow:0 20px 60px rgba(0,0,0,.6);display:none;animation:popIn .25s ease}
+.tbadge{display:inline-flex;align-items:center;gap:5px;background:rgba(59,130,246,.12);color:var(--blue);font-size:10px;font-weight:700;border-radius:20px;padding:3px 10px;margin-bottom:10px;text-transform:uppercase;letter-spacing:.05em}
+.tbadge i{font-size:12px}
+.ttitle{font-family:var(--fh);font-size:15px;font-weight:700;margin-bottom:8px}
+.tbody{font-size:12.5px;color:var(--txt2);line-height:1.65;margin-bottom:16px}
+.tbody strong{color:var(--txt)}
+.tfoot{display:flex;align-items:center;justify-content:space-between}
+.tdots{display:flex;gap:4px}
+.tdot{width:6px;height:6px;border-radius:50%;background:var(--c4);transition:all .2s}
+.tdot.on{background:var(--blue);width:18px;border-radius:3px}
+.tskip{font-size:11px;color:var(--muted);background:none;border:none;cursor:pointer;text-decoration:underline;padding:0}
+.tskip:hover{color:var(--txt)}
+/* ═══ AI ASSISTANT ═══ */
+.aibubble{position:fixed;bottom:24px;right:24px;z-index:400}
+.aitoggle{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--purple));display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 6px 24px rgba(59,130,246,.4);border:none;transition:all .2s}
+.aitoggle:hover{transform:scale(1.08)}
+.aitoggle i{font-size:22px;color:#fff}
+.aipanel{position:absolute;bottom:64px;right:0;width:284px;background:var(--c2);border:1px solid var(--bdr2);border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.5);overflow:hidden;display:none}
+.aipanel.on{display:block;animation:popIn .2s ease}
+.aiphd{padding:14px 16px;background:linear-gradient(135deg,rgba(59,130,246,.1),rgba(139,92,246,.07));border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:10px}
+.aiico{width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,var(--blue),var(--purple));display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.aiico i{font-size:15px;color:#fff}
+.aiptitle{font-family:var(--fh);font-size:13px;font-weight:700}
+.aipsub{font-size:10px;color:var(--muted)}
+.aibody{padding:14px 16px;max-height:320px;overflow-y:auto}
+.aist{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px}
+.aist:last-of-type{border:none}
+.ail{color:var(--txt2)}.aiv{font-weight:600;color:var(--txt)}
+.aitips{margin-top:12px;padding-top:12px;border-top:1px solid var(--bdr)}
+.aitips-title{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.aitip{display:flex;gap:8px;padding:7px 0;font-size:12px;color:var(--txt2);border-bottom:1px solid rgba(255,255,255,.03)}
+.aitip:last-child{border:none}
+.aitip i{font-size:13px;flex-shrink:0;margin-top:1px}
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:960px){.g2{grid-template-columns:1fr}}
+@media(max-width:640px){
+  .sidebar{transform:translateX(-100%)}.sidebar.open{transform:translateX(0)}
+  .hbg{display:block}.main{margin-left:0}
+  .sgrid{grid-template-columns:1fr 1fr}.content{padding:16px}
+  .topbar{padding:0 14px}.uname,.urole{display:none}
+  .wmfeats{grid-template-columns:1fr}
+  .tbub{width:calc(100vw - 32px);left:16px!important;right:auto!important}
+  .aibubble{bottom:16px;right:16px}
+  .lbox{padding:32px 22px}
+}
+</style>
+</head>
+<body>
+<div class="toast" id="toast"><i class="ti ti-check-circle"></i><span id="tmsg"></span></div>
+<!-- ══════════ LOGIN SCREEN ══════════ -->
+<div id="loginScreen">
+ <div class="lbox">
+  <div class="lbrand">
+   <div class="llogo"><i class="ti ti-droplet-filled-2"></i></div>
+   <div class="lbrand-name">OMOLADE ORI TABLE WATER</div>
+   <div class="lbrand-sub">Private Business Operations Platform</div>
+  </div>
+  <div class="ldivider">🔒 Authorized Personnel Only</div>
+  <!-- Step 1: Enter credentials -->
+  <div id="ls1">
+   <div class="fg"><label>Full Name</label><input type="text" id="lName" placeholder="Your full name" autocomplete="name"></div>
+   <div class="fg"><label>Email Address</label><input type="email" id="lEmail" placeholder="your@email.com" autocomplete="email"></div>
+   <div class="fg"><label>Secret Entry Code</label><input type="password" id="lCode" placeholder="••••••••••" onkeydown="if(event.key==='Enter')doLogin()"></div>
+   <div id="lalert" class="lalert err" style="display:none"><i class="ti ti-shield-x"></i><span id="lalertMsg"></span></div>
+   <button class="btn btn-primary btn-full btn-lg" style="margin-top:6px" onclick="doLogin()"><i class="ti ti-login"></i>Continue</button>
+   <div class="lfooter">
+    <p>Need access? Contact the business owner.</p>
+    <a class="wa-btn" href="https://wa.me/2348039250391" target="_blank"><i class="ti ti-brand-whatsapp"></i>Contact Owner</a>
+    <div class="lock-notice"><i class="ti ti-lock"></i>This is a private system. All access is monitored.</div>
+   </div>
+  </div>
+  <!-- Step 2: New user request form -->
+  <div id="ls2" style="display:none">
+   <div class="lalert info" style="display:flex;margin-bottom:16px"><i class="ti ti-info-circle"></i><span>Your email is not yet registered. Please complete this form to request access from the business owner.</span></div>
+   <div class="fg"><label>Full Name <span class="req">*</span></label><input type="text" id="r2name" placeholder="Your full name"></div>
+   <div class="fg"><label>Phone Number <span class="req">*</span></label><input type="tel" id="r2phone" placeholder="080x-xxx-xxxx"></div>
+   <div class="fg"><label>Email Address</label><input type="email" id="r2email" readonly style="opacity:.6"></div>
+   <div class="fg"><label>Relationship to Business <span class="req">*</span></label>
+    <select id="r2rel"><option value="">Select…</option><option>Family</option><option>Manager</option><option>Worker</option><option>Other</option></select>
+   </div>
+   <div style="display:flex;gap:8px;margin-top:4px">
+    <button class="btn btn-outline" onclick="showLS(1)"><i class="ti ti-arrow-left"></i>Back</button>
+    <button class="btn btn-primary" style="flex:1;justify-content:center" onclick="requestAccess()"><i class="ti ti-send"></i>Request Access</button>
+   </div>
+  </div>
+  <!-- Step 3: Request sent -->
+  <div id="ls3" style="display:none">
+   <div class="pending-card">
+    <div class="pending-icon ok"><i class="ti ti-circle-check"></i></div>
+    <div class="pending-title">Request Sent!</div>
+    <div class="pending-body">Your request has been sent to the business owner via WhatsApp. You will gain access once approved. Return and log in after approval.</div>
+    <div class="info-card">
+     <div class="info-row"><i class="ti ti-check"></i>Your name &amp; phone number</div>
+     <div class="info-row"><i class="ti ti-check"></i>Your email address</div>
+     <div class="info-row"><i class="ti ti-check"></i>Relationship to business</div>
+     <div class="info-row"><i class="ti ti-check"></i>Time and date of request</div>
+    </div>
+    <a class="wa-btn" style="display:inline-flex;margin-bottom:12px" href="https://wa.me/2348039250391" target="_blank"><i class="ti ti-brand-whatsapp"></i>Chat with Owner</a>
+    <button class="btn btn-outline btn-full" onclick="showLS(1)"><i class="ti ti-arrow-left"></i>Back to Login</button>
+   </div>
+  </div>
+ </div>
+</div>
+
+<!-- ══════════ WELCOME MODAL ══════════ -->
+<div class="wmwrap" id="wm" style="display:none">
+ <div class="wmbox">
+  <div class="wmicon"><i class="ti ti-droplet-filled-2"></i></div>
+  <div class="wmtitle">Welcome, <span class="wmname" id="wmName">—</span> 👋</div>
+  <div class="wmsub">You are now inside the <strong>Omolade Ori Table Water</strong> Private Business Operations Platform. Take a quick tour to learn how everything works.</div>
+  <div class="wmfeats">
+   <div class="wmf"><i class="ti ti-chart-bar"></i>Daily Sales &amp; Profits</div>
+   <div class="wmf"><i class="ti ti-boxes"></i>Stock &amp; Production</div>
+   <div class="wmf"><i class="ti ti-credit-card-off"></i>Debt Tracking</div>
+   <div class="wmf"><i class="ti ti-users"></i>Worker Attendance</div>
+   <div class="wmf"><i class="ti ti-alert-circle"></i>Complaints Log</div>
+   <div class="wmf"><i class="ti ti-history"></i>Full Activity Log</div>
+  </div>
+  <button class="btn btn-primary btn-full btn-lg" onclick="startTour()"><i class="ti ti-route"></i>Start Tour — 60 seconds</button>
+  <button class="btn-ghost btn-full" style="display:block;text-align:center;margin-top:10px;font-size:12px;color:var(--muted);padding:8px 0" onclick="skipTour()">Skip — I'll explore on my own</button>
+ </div>
+</div>
+
+<!-- TOUR ELEMENTS -->
+<div class="tveil" id="tveil"></div>
+<div class="tspot" id="tspot"></div>
+<div class="tbub" id="tbub">
+ <div class="tbadge"><i class="ti ti-route"></i><span id="tbadgeTxt">Tour</span></div>
+ <div class="ttitle" id="ttitle"></div>
+ <div class="tbody" id="tbody"></div>
+ <div class="tfoot">
+  <button class="tskip" onclick="skipTour()">Skip tour</button>
+  <div class="tdots" id="tdots"></div>
+  <div style="display:flex;gap:6px">
+   <button class="btn btn-outline btn-sm" id="tprev" onclick="tPrev()" style="display:none"><i class="ti ti-chevron-left"></i></button>
+   <button class="btn btn-primary btn-sm" id="tnext" onclick="tNext()">Next <i class="ti ti-chevron-right"></i></button>
+  </div>
+ </div>
+</div>
+<!-- ══════════ MAIN APP ══════════ -->
+<div id="mainApp" style="display:none">
+<div class="overlay" id="overlay" onclick="closeSB()"></div>
+<!-- MODALS -->
+<div class="mwrap" id="mTxn"><div class="mbg" onclick="closeM('mTxn')"></div><div class="mbox"><div class="mhd"><div class="mtitle"><i class="ti ti-plus" style="color:var(--blue)"></i> Add Transaction</div><button class="mclose" onclick="closeM('mTxn')"><i class="ti ti-x"></i></button></div><div class="fg"><label>Type <span class="req">*</span></label><select id="mtType"><option value="sale">Sale</option><option value="expense">Expense</option></select></div><div class="fg"><label>Description <span class="req">*</span></label><input type="text" id="mtDesc" placeholder="e.g. Sale to ABC Stores"></div><div class="fgrow"><div class="fg"><label>Amount (₦) <span class="req">*</span></label><input type="number" id="mtAmt" placeholder="0.00"></div><div class="fg"><label>Date</label><input type="date" id="mtDate"></div></div><div class="fg"><label>Note</label><input type="text" id="mtNote" placeholder="Optional"></div><div style="display:flex;gap:8px;margin-top:6px"><button class="btn btn-primary" onclick="saveTxn()"><i class="ti ti-check"></i>Save</button><button class="btn btn-outline" onclick="closeM('mTxn')">Cancel</button></div></div></div>
+
+<div class="mwrap" id="mDebt"><div class="mbg" onclick="closeM('mDebt')"></div><div class="mbox"><div class="mhd"><div class="mtitle"><i class="ti ti-user-plus" style="color:var(--blue)"></i> Add Customer Debt</div><button class="mclose" onclick="closeM('mDebt')"><i class="ti ti-x"></i></button></div><div class="fgrow"><div class="fg"><label>Customer Name <span class="req">*</span></label><input type="text" id="mdName" placeholder="Full name"></div><div class="fg"><label>Phone</label><input type="tel" id="mdPhone" placeholder="080x-xxx-xxxx"></div></div><div class="fgrow"><div class="fg"><label>Amount Owed (₦) <span class="req">*</span></label><input type="number" id="mdAmt" placeholder="0.00"></div><div class="fg"><label>Due Date</label><input type="date" id="mdDue"></div></div><div class="fg"><label>Area / Address</label><input type="text" id="mdArea" placeholder="e.g. Lekki Phase 1"></div><div style="display:flex;gap:8px;margin-top:6px"><button class="btn btn-primary" onclick="saveDebt()"><i class="ti ti-check"></i>Save</button><button class="btn btn-outline" onclick="closeM('mDebt')">Cancel</button></div></div></div>
+
+<div class="mwrap" id="mComp"><div class="mbg" onclick="closeM('mComp')"></div><div class="mbox"><div class="mhd"><div class="mtitle"><i class="ti ti-alert-circle" style="color:var(--red)"></i> Log Complaint</div><button class="mclose" onclick="closeM('mComp')"><i class="ti ti-x"></i></button></div><div class="fg"><label>Title <span class="req">*</span></label><input type="text" id="mcTitle" placeholder="e.g. Delay in delivery"></div><div class="fgrow"><div class="fg"><label>Reported By</label><input type="text" id="mcBy" placeholder="Customer name"></div><div class="fg"><label>Area</label><input type="text" id="mcArea" placeholder="e.g. Lekki"></div></div><div class="fg"><label>Details</label><textarea id="mcDetail" placeholder="Describe the issue…"></textarea></div><div style="display:flex;gap:8px;margin-top:6px"><button class="btn btn-primary" onclick="saveComp()"><i class="ti ti-check"></i>Submit</button><button class="btn btn-outline" onclick="closeM('mComp')">Cancel</button></div></div></div>
+
+<div class="mwrap" id="mWork"><div class="mbg" onclick="closeM('mWork')"></div><div class="mbox"><div class="mhd"><div class="mtitle"><i class="ti ti-user-plus" style="color:var(--green)"></i> Add Worker</div><button class="mclose" onclick="closeM('mWork')"><i class="ti ti-x"></i></button></div><div class="fgrow"><div class="fg"><label>Full Name <span class="req">*</span></label><input type="text" id="mwName" placeholder="Full name"></div><div class="fg"><label>Role <span class="req">*</span></label><input type="text" id="mwRole" placeholder="e.g. Machine Operator"></div></div><div class="fgrow"><div class="fg"><label>Phone</label><input type="tel" id="mwPhone" placeholder="080x-xxx-xxxx"></div><div class="fg"><label>Shift</label><select id="mwShift"><option>Morning</option><option>Afternoon</option><option>Night</option></select></div></div><div style="display:flex;gap:8px;margin-top:6px"><button class="btn btn-primary" onclick="saveWorker()"><i class="ti ti-check"></i>Add</button><button class="btn btn-outline" onclick="closeM('mWork')">Cancel</button></div></div></div>
+
+<!-- NOTIF PANEL -->
+<div class="npanel" id="npanel" style="display:none">
+ <div class="nphd"><div class="nptitle">Notifications</div><button class="npclear" onclick="clearNotifs()">Clear all</button></div>
+ <div id="nlist"><div class="nempty">No notifications yet</div></div>
+</div>
+
+<div class="app">
+ <!-- SIDEBAR -->
+ <aside class="sidebar" id="sidebar">
+  <div class="logo-area">
+   <div class="logo-mark"><i class="ti ti-droplet-filled-2"></i></div>
+   <div><div class="logo-name">Ori Table Water</div><div class="logo-tag">Private Portal</div></div>
+  </div>
+  <nav>
+   <div class="ns">Overview</div>
+   <div class="ni active" id="nv-dashboard" onclick="gp('dashboard',this)"><i class="ti ti-layout-dashboard"></i>Dashboard</div>
+   <div class="ni" id="nv-production" onclick="gp('production',this)"><i class="ti ti-clipboard-list"></i>Daily Entry</div>
+   <div class="ns">Finance</div>
+   <div class="ni" id="nv-sales" onclick="gp('sales',this)"><i class="ti ti-chart-bar"></i>Sales &amp; Expenses</div>
+   <div class="ni" id="nv-debts" onclick="gp('debts',this)"><i class="ti ti-credit-card-off"></i>Customers &amp; Debts</div>
+   <div class="ns">Operations</div>
+   <div class="ni" id="nv-workers" onclick="gp('workers',this)"><i class="ti ti-users"></i>Workers</div>
+   <div class="ni" id="nv-complaints" onclick="gp('complaints',this)"><i class="ti ti-alert-circle"></i>Complaints<span class="nibadge" id="cBadge">0</span></div>
+   <div class="ni" id="nv-activity" onclick="gp('activity',this)"><i class="ti ti-history"></i>Activity Log</div>
+   <div class="ni" id="nv-reports" onclick="gp('reports',this)"><i class="ti ti-file-analytics"></i>Reports</div>
+   <div class="ns">Account</div>
+   <div class="ni" onclick="doLogout()"><i class="ti ti-logout"></i>Sign Out</div>
+  </nav>
+  <div class="sf"><div class="sf-role" id="sfRole">—</div><div class="sf-name" id="sfName">—</div><div class="sf-online">Active session</div></div>
+ </aside>
+
+ <!-- MAIN -->
+ <div class="main">
+  <header class="topbar" style="position:relative">
+   <div class="tb-left">
+    <button class="hbg" onclick="toggleSB()"><i class="ti ti-menu-2"></i></button>
+    <div class="tb-title" id="pageTitle">Dashboard</div>
+   </div>
+   <div class="tb-right">
+    <button class="btn btn-outline btn-sm" id="waBtn" onclick="genWA()"><i class="ti ti-brand-whatsapp" style="color:#25d366"></i>WA Report</button>
+    <div class="icon-btn" id="nBtn" onclick="toggleNotif()" style="position:relative"><i class="ti ti-bell" style="font-size:17px"></i><span class="nbadge" id="nCount">0</span></div>
+    <div class="uchip" onclick="doLogout()" title="Click to sign out">
+     <div class="uav" id="topAv">?</div>
+     <div><div class="uname" id="topName">—</div><div class="urole" id="topRole">—</div></div>
+    </div>
+   </div>
+  </header>
+  <main class="content">
+
+   <!-- ═══ DASHBOARD ═══ -->
+   <section class="page active" id="page-dashboard">
+    <div class="ph">
+     <div><h2 id="dashGreet">Good day 👋</h2><div class="ph-sub" id="dashDate">Loading…</div></div>
+     <div class="brow">
+      <button class="btn btn-outline" onclick="gp('reports',document.getElementById('nv-reports'))"><i class="ti ti-file-analytics"></i>Reports</button>
+      <button class="btn btn-primary" id="addEntryBtn" onclick="gp('production',document.getElementById('nv-production'))"><i class="ti ti-plus"></i>Add Today's Entry</button>
+     </div>
+    </div>
+    <div id="dEmpty" class="card" style="text-align:center;padding:44px 20px">
+     <i class="ti ti-chart-dots" style="font-size:50px;display:block;margin-bottom:14px;color:var(--muted);opacity:.25"></i>
+     <div style="font-family:var(--fh);font-size:15px;font-weight:600;color:var(--txt2);margin-bottom:6px">No data yet — add your first daily entry</div>
+     <div style="font-size:12px;color:var(--muted);max-width:280px;margin:0 auto 18px;line-height:1.65">Once you save your first record, your dashboard will show live sales, profits, stock charts and more.</div>
+     <button class="btn btn-primary" onclick="gp('production',document.getElementById('nv-production'))"><i class="ti ti-plus"></i>Add First Daily Entry</button>
+    </div>
+    <div id="dLive" style="display:none">
+     <div class="sgrid">
+      <div class="sc blue"><div class="scg"></div><div class="sc-icon"><i class="ti ti-cash"></i></div><div class="sc-lbl">Today's Revenue</div><div class="sc-val" id="dRev">₦0</div><div class="sc-sub" id="dRevS">—</div></div>
+      <div class="sc green"><div class="scg"></div><div class="sc-icon"><i class="ti ti-package"></i></div><div class="sc-lbl">Bags Sold</div><div class="sc-val" id="dSold">0</div><div class="sc-sub" id="dSoldS">—</div></div>
+      <div class="sc warn"><div class="scg"></div><div class="sc-icon"><i class="ti ti-receipt"></i></div><div class="sc-lbl">Expenses</div><div class="sc-val" id="dExp">₦0</div><div class="sc-sub" id="dExpS">—</div></div>
+      <div class="sc cyan"><div class="scg"></div><div class="sc-icon"><i class="ti ti-coin"></i></div><div class="sc-lbl">Net Profit</div><div class="sc-val" id="dProfit">₦0</div><div class="sc-sub" id="dProfitS">—</div></div>
+      <div class="sc red"><div class="scg"></div><div class="sc-icon"><i class="ti ti-credit-card-off"></i></div><div class="sc-lbl">Total Debt</div><div class="sc-val" id="dDebt">₦0</div><div class="sc-sub" id="dDebtS">0 customers</div></div>
+      <div class="sc purple"><div class="scg"></div><div class="sc-icon"><i class="ti ti-boxes"></i></div><div class="sc-lbl">Bags Produced</div><div class="sc-val" id="dProd">0</div><div class="sc-sub" id="dProdS">—</div></div>
+     </div>
+     <div class="g2">
+      <div class="card"><div class="ctitle">Recent Transactions <small><button class="btn-ghost" style="font-size:11px;padding:0;border:none;background:none;cursor:pointer;color:var(--blue)" onclick="gp('sales',document.getElementById('nv-sales'))">View all →</button></small></div><table><thead><tr><th>Description</th><th>Amount</th><th>Type</th></tr></thead><tbody id="dTxns"></tbody></table></div>
+      <div class="card"><div class="ctitle">Outstanding Debts <small><button class="btn-ghost" style="font-size:11px;padding:0;border:none;background:none;cursor:pointer;color:var(--blue)" onclick="gp('debts',document.getElementById('nv-debts'))">View all →</button></small></div><table><thead><tr><th>Customer</th><th>Owed</th><th>Status</th></tr></thead><tbody id="dDebts"></tbody></table></div>
+     </div>
+    </div>
+   </section>
+
+   <!-- ═══ DAILY ENTRY ═══ -->
+   <section class="page" id="page-production">
+    <div class="ph"><div><h2>Daily Production Entry</h2><div class="ph-sub">Record today's bags, sales and all expenses</div></div></div>
+    <div class="fcard">
+     <div class="ftitle"><i class="ti ti-clipboard-plus"></i>Today's Record</div>
+     <div class="fgrid">
+      <div class="fg"><label>Date <span class="req">*</span></label><input type="date" id="eDate"></div>
+      <div class="fg"><label>Shift</label><select id="eShift"><option>Morning (6am–2pm)</option><option>Afternoon (2pm–10pm)</option><option>Night (10pm–6am)</option></select></div>
+      <div class="fg"><label>Manager on Duty</label><input type="text" id="eMgr" placeholder="Full name"></div>
+      <div class="fg"><label>Bags Produced <span class="req">*</span></label><input type="number" id="eProd" placeholder="e.g. 420" oninput="calcP()"></div>
+      <div class="fg"><label>Bags Sold <span class="req">*</span></label><input type="number" id="eSold" placeholder="e.g. 350" oninput="calcP()"></div>
+      <div class="fg"><label>Bags Returned</label><input type="number" id="eRet" placeholder="e.g. 18"></div>
+      <div class="fg"><label>Revenue (₦) <span class="req">*</span></label><input type="number" id="eRev" placeholder="e.g. 175000" oninput="calcP()"></div>
+      <div class="fg"><label>Expenses (₦) <span class="req">*</span></label><input type="number" id="eExp" placeholder="e.g. 22000" oninput="calcP()"></div>
+     </div>
+     <div class="fg" style="margin-top:4px"><label>Expense Notes</label><textarea id="eNotes" placeholder="Diesel ₦5,000 · Transport ₦3,000 · Maintenance ₦2,000…"></textarea></div>
+     <div class="pprev"><div class="pprev-lbl"><i class="ti ti-calculator"></i>Estimated Net Profit</div><div class="pprev-val" id="pPrev">₦0</div></div>
+     <div class="factions"><button class="btn btn-primary" onclick="submitEntry()"><i class="ti ti-device-floppy"></i>Save Record</button><button class="btn btn-outline" onclick="clearEntry()"><i class="ti ti-refresh"></i>Clear</button></div>
+     <div class="fmsg" id="eMsg"></div>
+    </div>
+    <div class="card"><div class="ctitle">All Daily Records <small id="recCnt">0 records</small></div>
+     <table><thead><tr><th>Date</th><th>Produced</th><th>Sold</th><th>Returned</th><th>Revenue</th><th>Expenses</th><th>Profit</th><th>Shift</th></tr></thead>
+     <tbody id="recBody"><tr><td colspan="8"><div class="es"><i class="ti ti-clipboard-list"></i><h3>No records yet</h3><p>Fill the form above to add your first daily entry.</p></div></td></tr></tbody></table>
+    </div>
+   </section>
+
+   <!-- ═══ SALES & EXPENSES ═══ -->
+   <section class="page" id="page-sales">
+    <div class="ph"><div><h2>Sales &amp; Expenses</h2><div class="ph-sub">Full financial transaction log</div></div><button class="btn btn-primary" onclick="openM('mTxn')"><i class="ti ti-plus"></i>Add Transaction</button></div>
+    <div class="sgrid" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr))">
+     <div class="sc blue"><div class="sc-icon"><i class="ti ti-calendar-stats"></i></div><div class="sc-lbl">Total Revenue</div><div class="sc-val" id="sRev">₦0</div></div>
+     <div class="sc red"><div class="sc-icon"><i class="ti ti-receipt-2"></i></div><div class="sc-lbl">Total Expenses</div><div class="sc-val" id="sExp">₦0</div></div>
+     <div class="sc green"><div class="sc-icon"><i class="ti ti-coin"></i></div><div class="sc-lbl">Net Profit</div><div class="sc-val" id="sProfit">₦0</div></div>
+     <div class="sc purple"><div class="sc-icon"><i class="ti ti-percentage"></i></div><div class="sc-lbl">Profit Margin</div><div class="sc-val" id="sMargin">—</div></div>
+    </div>
+    <div class="card"><div class="ctitle">All Transactions <select style="background:var(--c3);border:1px solid var(--bdr2);border-radius:8px;padding:5px 10px;color:var(--txt);font-size:11px" onchange="filterTxns(this.value)"><option value="all">All</option><option value="sale">Sales</option><option value="expense">Expenses</option></select></div>
+     <table><thead><tr><th>Date</th><th>Description</th><th>Amount</th><th>Type</th><th></th></tr></thead>
+     <tbody id="txnBody"><tr><td colspan="5"><div class="es"><i class="ti ti-chart-bar"></i><h3>No transactions yet</h3><p>Click <strong>Add Transaction</strong> to record your first entry.</p></div></td></tr></tbody></table>
+    </div>
+   </section>
+
+   <!-- ═══ DEBTS ═══ -->
+   <section class="page" id="page-debts">
+    <div class="ph"><div><h2>Customers &amp; Debts</h2><div class="ph-sub">Track who owes money and follow up</div></div><button class="btn btn-primary" onclick="openM('mDebt')"><i class="ti ti-user-plus"></i>Add Customer</button></div>
+    <div class="sgrid" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr))">
+     <div class="sc red"><div class="sc-icon"><i class="ti ti-credit-card-off"></i></div><div class="sc-lbl">Total Outstanding</div><div class="sc-val" id="dbtTotal">₦0</div></div>
+     <div class="sc warn"><div class="sc-icon"><i class="ti ti-users"></i></div><div class="sc-lbl">Active Debtors</div><div class="sc-val" id="dbtActive">0</div></div>
+     <div class="sc green"><div class="sc-icon"><i class="ti ti-check"></i></div><div class="sc-lbl">Marked Paid</div><div class="sc-val" id="dbtPaid">0</div></div>
+    </div>
+    <div class="card"><div class="ctitle">Customer Debt Records</div>
+     <table><thead><tr><th>Customer</th><th>Phone</th><th>Amount Owed</th><th>Due Date</th><th>Status</th><th>Action</th></tr></thead>
+     <tbody id="debtBody"><tr><td colspan="6"><div class="es"><i class="ti ti-credit-card-off"></i><h3>No debts recorded</h3><p>Click <strong>Add Customer</strong> to record a customer debt.</p></div></td></tr></tbody></table>
+    </div>
+   </section>
+
+   <!-- ═══ WORKERS ═══ -->
+   <section class="page" id="page-workers">
+    <div class="ph"><div><h2>Workers &amp; Attendance</h2><div class="ph-sub">Staff list and weekly attendance tracker</div></div><button class="btn btn-primary" onclick="openM('mWork')"><i class="ti ti-user-plus"></i>Add Worker</button></div>
+    <div class="sgrid" style="grid-template-columns:repeat(auto-fit,minmax(130px,1fr))">
+     <div class="sc blue"><div class="sc-icon"><i class="ti ti-users"></i></div><div class="sc-lbl">Total Staff</div><div class="sc-val" id="wTotal">0</div></div>
+     <div class="sc green"><div class="sc-icon"><i class="ti ti-user-check"></i></div><div class="sc-lbl">Present Today</div><div class="sc-val" id="wPresent">0</div></div>
+     <div class="sc red"><div class="sc-icon"><i class="ti ti-user-off"></i></div><div class="sc-lbl">Absent Today</div><div class="sc-val" id="wAbsent">0</div></div>
+    </div>
+    <div class="card"><div class="ctitle">Staff &amp; Attendance
+     <div style="display:flex;gap:12px;font-size:10.5px;color:var(--muted)"><span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);margin-right:4px"></span>Present</span><span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:4px"></span>Absent</span></div>
+    </div>
+    <div id="workerList"><div class="es"><i class="ti ti-users"></i><h3>No workers added yet</h3><p>Add staff to track their attendance.</p><button class="btn btn-primary" style="margin-top:4px" onclick="openM('mWork')"><i class="ti ti-user-plus"></i>Add Worker</button></div></div>
+    </div>
+   </section>
+
+   <!-- ═══ COMPLAINTS ═══ -->
+   <section class="page" id="page-complaints">
+    <div class="ph"><div><h2>Complaints</h2><div class="ph-sub">Log and resolve customer issues</div></div><button class="btn btn-primary" onclick="openM('mComp')"><i class="ti ti-plus"></i>Log Complaint</button></div>
+    <div class="sgrid" style="grid-template-columns:repeat(auto-fit,minmax(130px,1fr))">
+     <div class="sc red"><div class="sc-icon"><i class="ti ti-alert-circle"></i></div><div class="sc-lbl">Open</div><div class="sc-val" id="cpOpen">0</div></div>
+     <div class="sc green"><div class="sc-icon"><i class="ti ti-circle-check"></i></div><div class="sc-lbl">Resolved</div><div class="sc-val" id="cpResolved">0</div></div>
+     <div class="sc blue"><div class="sc-icon"><i class="ti ti-clock"></i></div><div class="sc-lbl">Avg Resolution</div><div class="sc-val">—</div></div>
+    </div>
+    <div class="card"><div class="ctitle">All Complaints</div>
+     <div id="cpList"><div class="es"><i class="ti ti-alert-circle"></i><h3>No complaints logged</h3><p>Log customer issues to track and resolve them quickly.</p><button class="btn btn-primary" style="margin-top:4px" onclick="openM('mComp')"><i class="ti ti-plus"></i>Log First Complaint</button></div></div>
+    </div>
+   </section>
+
+   <!-- ═══ ACTIVITY LOG ═══ -->
+   <section class="page" id="page-activity">
+    <div class="ph"><div><h2>Activity Log</h2><div class="ph-sub">Every action in the system — full audit trail</div></div><button class="btn btn-outline" onclick="clearAct()"><i class="ti ti-trash"></i>Clear Log</button></div>
+    <div class="card"><div id="actList"><div class="es"><i class="ti ti-history"></i><h3>No activity yet</h3><p>Every action — entries, payments, complaints — will be logged here automatically.</p></div></div></div>
+   </section>
+
+   <!-- ═══ REPORTS ═══ -->
+   <section class="page" id="page-reports">
+    <div class="ph"><div><h2>Reports &amp; Analytics</h2><div class="ph-sub">Performance summaries and exports</div></div>
+     <div class="brow">
+      <button class="btn btn-outline" onclick="toast('PDF export — connect jsPDF in your backend.')"><i class="ti ti-file-type-pdf" style="color:var(--red)"></i>PDF</button>
+      <button class="btn btn-outline" onclick="toast('Excel export — connect SheetJS in your backend.')"><i class="ti ti-file-spreadsheet" style="color:var(--green)"></i>Excel</button>
+      <button class="btn btn-wa" onclick="genWA()"><i class="ti ti-brand-whatsapp"></i>WhatsApp</button>
+     </div>
+    </div>
+    <div id="rptEmpty" class="card" style="text-align:center;padding:44px 20px"><i class="ti ti-file-analytics" style="font-size:50px;display:block;margin-bottom:14px;color:var(--muted);opacity:.25"></i><div style="font-family:var(--fh);font-size:15px;font-weight:600;color:var(--txt2);margin-bottom:6px">No data to report yet</div><div style="font-size:12px;color:var(--muted);max-width:280px;margin:0 auto 18px;line-height:1.65">Add daily entries and transactions. Reports appear here automatically.</div><button class="btn btn-primary" onclick="gp('production',document.getElementById('nv-production'))"><i class="ti ti-plus"></i>Add First Entry</button></div>
+    <div id="rptLive" style="display:none">
+     <div class="sbgrid">
+      <div class="sb"><div class="sb-lbl">Total Revenue</div><div class="sb-val tg" id="rRev">₦0</div></div>
+      <div class="sb"><div class="sb-lbl">Total Expenses</div><div class="sb-val tr" id="rExp">₦0</div></div>
+      <div class="sb"><div class="sb-lbl">Net Profit</div><div class="sb-val tb" id="rProfit">₦0</div></div>
+      <div class="sb"><div class="sb-lbl">Bags Sold</div><div class="sb-val" id="rBags">0</div></div>
+      <div class="sb"><div class="sb-lbl">Profit Margin</div><div class="sb-val" style="color:var(--green)" id="rMargin">—</div></div>
+     </div>
+     <div class="card"><div class="ctitle">Revenue vs Expenses per Entry</div><div style="position:relative;height:220px"><canvas id="rptChart"></canvas></div></div>
+    </div>
+   </section>
+
+  </main>
+ </div>
+</div>
+<!-- AI ASSISTANT -->
+<div class="aibubble" id="aiBubble">
+ <div class="aipanel" id="aiPanel">
+  <div class="aiphd"><div class="aiico"><i class="ti ti-robot"></i></div><div><div class="aiptitle">Business Assistant</div><div class="aipsub">Based on your real data</div></div></div>
+  <div class="aibody" id="aiBody"><div style="font-size:12px;color:var(--muted);text-align:center;padding:20px 0">Add your first daily entry to see smart insights here.</div></div>
+ </div>
+ <button class="aitoggle" onclick="toggleAI()"><i class="ti ti-robot"></i></button>
+</div>
+</div>
+<script>
+// ═══════════════════════════════════════════
+// CONFIG
+// ═══════════════════════════════════════════
+const SECRET_CODE = 'jesufolake';
+const OWNER_WA    = '2348039250391';
+
+// ═══════════════════════════════════════════
+// PERSISTENT STATE (localStorage)
+// ═══════════════════════════════════════════
+let approvedUsers = JSON.parse(localStorage.getItem('ow_users') || '[]');
+function saveUsers(){ localStorage.setItem('ow_users', JSON.stringify(approvedUsers)); }
+
+let S = {
+  records:[], transactions:[], customers:[],
+  workers:[], complaints:[], paidCount:0,
+  notifications:[], activityLog:[]
+};
+
+let currentUser = null;
+
+// ═══════════════════════════════════════════
+// LOGIN
+// ═══════════════════════════════════════════
+function showLS(n){
+  [1,2,3].forEach(i=> document.getElementById('ls'+i).style.display = i===n?'block':'none');
+  document.getElementById('lalert').style.display='none';
+}
+
+function showLoginErr(msg){
+  const el=document.getElementById('lalert');
+  el.style.display='flex';
+  document.getElementById('lalertMsg').textContent=msg;
+}
+
+function doLogin(){
+  const name  = document.getElementById('lName').value.trim();
+  const email = document.getElementById('lEmail').value.trim().toLowerCase();
+  const code  = document.getElementById('lCode').value.trim();
+  if(!name||!email||!code){ showLoginErr('Please fill in all three fields.'); return; }
+  if(code !== SECRET_CODE){
+    showLoginErr('Invalid Entry Code. This is a private business management system. Please contact the business owner for the correct code.');
+    return;
+  }
+  // Code correct — check email
+  const existing = approvedUsers.find(u=>u.email===email);
+  if(existing){
+    existing.name = name;
+    saveUsers();
+    loginSuccess(existing);
+  } else if(approvedUsers.length < 2){
+    // Auto-approve first 2 users
+    const role = approvedUsers.length === 0 ? 'Owner / Admin' : 'Manager';
+    const newU = { name, email, role, joinedAt: new Date().toISOString() };
+    approvedUsers.push(newU);
+    saveUsers();
+    loginSuccess(newU);
+  } else {
+    // Unknown user — needs approval
+    document.getElementById('r2name').value  = name;
+    document.getElementById('r2email').value = email;
+    showLS(2);
+  }
+}
+
+function requestAccess(){
+  const name  = document.getElementById('r2name').value.trim();
+  const phone = document.getElementById('r2phone').value.trim();
+  const email = document.getElementById('r2email').value.trim();
+  const rel   = document.getElementById('r2rel').value;
+  if(!name||!phone||!rel){ alert('Please fill all required fields.'); return; }
+  const now = new Date().toLocaleString('en-GB',{hour:'2-digit',minute:'2-digit',day:'numeric',month:'short',year:'numeric'});
+  const msg = encodeURIComponent(
+    `🔔 *OMOLADE ORI TABLE WATER*\n*NEW ACCESS REQUEST*\n\n`+
+    `👤 Name: ${name}\n📞 Phone: ${phone}\n📧 Email: ${email}\n🤝 Relationship: ${rel}\n🕐 Time: ${now}\n\n`+
+    `To approve this user, add their email to the system and reply APPROVED.\n`+
+    `⚠️ If you do not recognise this person, ignore this message.`
+  );
+  window.open(`https://wa.me/${OWNER_WA}?text=${msg}`, '_blank');
+  showLS(3);
+}
+
+function loginSuccess(user){
+  currentUser = user;
+  document.getElementById('loginScreen').style.display='none';
+  document.getElementById('mainApp').style.display='block';
+  const init = user.name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+  document.getElementById('sfName').textContent  = user.name;
+  document.getElementById('sfRole').textContent  = user.role;
+  document.getElementById('topName').textContent = user.name.split(' ')[0];
+  document.getElementById('topRole').textContent = user.role;
+  document.getElementById('topAv').textContent   = init;
+  document.getElementById('wmName').textContent  = user.name.split(' ')[0];
+  const h=new Date().getHours();
+  const gr=h<12?'Good morning':h<17?'Good afternoon':'Good evening';
+  document.getElementById('dashGreet').textContent = gr+', '+user.name.split(' ')[0]+' 👋';
+  document.getElementById('dashDate').textContent  = new Date().toLocaleDateString('en-GB',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+' — Private Portal';
+  const today=new Date().toISOString().slice(0,10);
+  ['eDate','mtDate','mdDue'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=today;});
+  logAct('🔐 '+user.name+' signed in as '+user.role,'login');
+  addNotif('Login', user.name+' signed in', 'var(--green)');
+  updateDash(); updateSalesPage(); updateDebtPage(); updateWorkersPage(); updateCpPage();
+  setTimeout(()=>{ document.getElementById('wm').style.display='flex'; }, 500);
+}
+
+function doLogout(){
+  if(currentUser) logAct('🚪 '+currentUser.name+' signed out','logout');
+  currentUser=null;
+  document.getElementById('mainApp').style.display='none';
+  document.getElementById('loginScreen').style.display='flex';
+  document.getElementById('lCode').value='';
+  skipTour();
+}
+
+// ═══════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════
+const TITLES={dashboard:'Dashboard',production:'Daily Entry',sales:'Sales & Expenses',debts:'Customers & Debts',workers:'Workers',complaints:'Complaints',activity:'Activity Log',reports:'Reports'};
+function gp(id,el){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  if(el) el.classList.add('active');
+  document.getElementById('pageTitle').textContent=TITLES[id]||id;
+  closeSB(); closeNotif();
+  if(id==='reports') updateReports();
+  if(id==='activity') renderAct();
+}
+function toggleSB(){ document.getElementById('sidebar').classList.toggle('open'); document.getElementById('overlay').classList.toggle('show'); }
+function closeSB()  { document.getElementById('sidebar').classList.remove('open'); document.getElementById('overlay').classList.remove('show'); }
+
+// ═══════════════════════════════════════════
+// TOAST
+// ═══════════════════════════════════════════
+let toastT;
+function toast(msg,type='ok'){
+  const t=document.getElementById('toast');
+  document.getElementById('tmsg').textContent=msg;
+  t.className='toast show t'+type;
+  t.querySelector('i').className=type==='err'?'ti ti-alert-circle':'ti ti-check-circle';
+  clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'),3500);
+}
+
+// ═══════════════════════════════════════════
+// MODALS
+// ═══════════════════════════════════════════
+function openM(id){ document.getElementById(id).classList.add('show'); }
+function closeM(id){ document.getElementById(id).classList.remove('show'); }
+
+// ═══════════════════════════════════════════
+// NOTIFICATIONS
+// ═══════════════════════════════════════════
+let nOpen=false;
+function toggleNotif(){
+  nOpen=!nOpen;
+  const p=document.getElementById('npanel');
+  const btn=document.getElementById('nBtn');
+  if(nOpen){
+    p.style.display='block';
+    p.style.position='absolute'; p.style.top='48px'; p.style.right='0';
+    btn.style.position='relative';
+    btn.parentNode.appendChild(p);
+  } else { p.style.display='none'; }
+}
+function closeNotif(){ nOpen=false; document.getElementById('npanel').style.display='none'; }
+document.addEventListener('click',e=>{
+  const btn=document.getElementById('nBtn');
+  const panel=document.getElementById('npanel');
+  if(btn&&panel&&!btn.contains(e.target)&&!panel.contains(e.target)) closeNotif();
+});
+
+function addNotif(title,text,color='var(--blue)'){
+  const now=new Date().toLocaleString('en-GB',{hour:'2-digit',minute:'2-digit'});
+  S.notifications.unshift({title,text,color,time:now});
+  renderNotifs();
+}
+function renderNotifs(){
+  const list=document.getElementById('nlist');
+  const badge=document.getElementById('nCount');
+  badge.textContent=Math.min(S.notifications.length,99);
+  if(!S.notifications.length){ list.innerHTML='<div class="nempty">No notifications yet</div>'; return; }
+  list.innerHTML=S.notifications.slice(0,15).map(n=>`<div class="nitem"><div class="ndot" style="background:${n.color}"></div><div><div class="ntxt"><strong>${n.title}</strong> — ${n.text}</div><div class="ntime">${n.time}</div></div></div>`).join('');
+}
+function clearNotifs(){ S.notifications=[]; document.getElementById('nCount').textContent='0'; document.getElementById('nlist').innerHTML='<div class="nempty">No notifications yet</div>'; }
+
+// ═══════════════════════════════════════════
+// ACTIVITY LOG
+// ═══════════════════════════════════════════
+const ACOL={login:'var(--green)',logout:'var(--muted)',entry:'var(--blue)',txn:'var(--cyan)',debt:'var(--warn)',comp:'var(--red)',resolve:'var(--green)',worker:'var(--purple)',paid:'var(--green)'};
+function logAct(text,type='entry'){
+  const now=new Date().toLocaleString('en-GB',{hour:'2-digit',minute:'2-digit',day:'numeric',month:'short'});
+  S.activityLog.unshift({text,type,time:now});
+}
+function renderAct(){
+  const el=document.getElementById('actList');
+  if(!S.activityLog.length){ el.innerHTML='<div class="es"><i class="ti ti-history"></i><h3>No activity yet</h3><p>Every action will be logged here automatically.</p></div>'; return; }
+  el.innerHTML=S.activityLog.map(a=>`<div class="aitem"><div class="adot2" style="background:${ACOL[a.type]||'var(--muted)'}"></div><div class="atxt">${a.text}</div><div class="atime">${a.time}</div></div>`).join('');
+}
+function clearAct(){ S.activityLog=[]; renderAct(); toast('Activity log cleared.'); }
+
+// ═══════════════════════════════════════════
+// DAILY ENTRY
+// ═══════════════════════════════════════════
+function calcP(){
+  const r=parseFloat(document.getElementById('eRev').value)||0;
+  const e=parseFloat(document.getElementById('eExp').value)||0;
+  const p=r-e;
+  const el=document.getElementById('pPrev');
+  el.textContent='₦'+p.toLocaleString();
+  el.style.color=p>=0?'var(--green)':'var(--red)';
+}
+function submitEntry(){
+  const date=document.getElementById('eDate').value;
+  const prod=document.getElementById('eProd').value;
+  const sold=document.getElementById('eSold').value;
+  const rev =document.getElementById('eRev').value;
+  const exp =document.getElementById('eExp').value;
+  const ret =document.getElementById('eRet').value||'0';
+  const shift=document.getElementById('eShift').value.split(' ')[0];
+  const mgr =document.getElementById('eMgr').value||currentUser?.name||'—';
+  const msg=document.getElementById('eMsg');
+  if(!date||!prod||!sold||!rev||!exp){ msg.className='fmsg err'; msg.innerHTML='<i class="ti ti-alert-circle"></i>Fill all required fields.'; return; }
+  const profit=Number(rev)-Number(exp);
+  const rec={date,prod:+prod,sold:+sold,ret:+ret,rev:+rev,exp:+exp,profit,shift,mgr};
+  S.records.unshift(rec);
+  S.transactions.unshift({date,desc:'Daily Revenue — '+date,type:'sale',amt:+rev});
+  S.transactions.unshift({date,desc:'Daily Expenses — '+date,type:'expense',amt:+exp});
+  msg.className='fmsg ok'; msg.innerHTML='<i class="ti ti-circle-check"></i>Record saved successfully!';
+  setTimeout(()=>msg.className='fmsg',3000);
+  clearEntry(); renderRecTable(); updateDash(); updateSalesPage(); updateReports(); updateAI();
+  logAct(`📋 ${mgr} submitted daily entry — Revenue ₦${Number(rev).toLocaleString()}, Profit ₦${profit.toLocaleString()}`,'entry');
+  addNotif('Daily Entry','Production record saved by '+mgr,'var(--blue)');
+  document.getElementById('recCnt').textContent=S.records.length+' record'+(S.records.length!==1?'s':'');
+  toast('Daily record saved!');
+}
+function clearEntry(){ ['eProd','eSold','eRet','eRev','eExp','eNotes','eMgr'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';}); document.getElementById('pPrev').textContent='₦0'; }
+function renderRecTable(){
+  const tbody=document.getElementById('recBody');
+  if(!S.records.length){ tbody.innerHTML='<tr><td colspan="8"><div class="es"><i class="ti ti-clipboard-list"></i><h3>No records yet</h3><p>Fill the form above to add your first entry.</p></div></td></tr>'; return; }
+  tbody.innerHTML=S.records.map(r=>{
+    const d=new Date(r.date).toLocaleDateString('en-GB',{month:'short',day:'numeric'});
+    const pc=r.shift==='Morning'?'pb':r.shift==='Afternoon'?'pg':'pp';
+    return `<tr><td>${d}</td><td>${r.prod}</td><td>${r.sold}</td><td>${r.ret}</td><td class="tg">₦${r.rev.toLocaleString()}</td><td class="tr">₦${r.exp.toLocaleString()}</td><td class="${r.profit>=0?'tb':'tr'}">₦${r.profit.toLocaleString()}</td><td><span class="pill ${pc}">${r.shift}</span></td></tr>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════
+// DASHBOARD
+// ═══════════════════════════════════════════
+function updateDash(){
+  const has=S.records.length||S.customers.length;
+  document.getElementById('dEmpty').style.display=has?'none':'block';
+  document.getElementById('dLive').style.display=has?'block':'none';
+  if(!has) return;
+  const latest=S.records[0]||{};
+  const fmt=v=>'₦'+(v||0).toLocaleString();
+  document.getElementById('dRev').textContent=fmt(latest.rev);
+  document.getElementById('dSold').textContent=latest.sold||'0';
+  document.getElementById('dExp').textContent=fmt(latest.exp);
+  document.getElementById('dProfit').textContent=fmt(latest.profit);
+  document.getElementById('dProd').textContent=latest.prod||'0';
+  document.getElementById('dRevS').textContent=latest.shift?latest.shift+' shift':'—';
+  document.getElementById('dSoldS').textContent=latest.date?'As of '+latest.date:'—';
+  document.getElementById('dExpS').textContent='Costs deducted';
+  document.getElementById('dProfitS').textContent=(latest.profit||0)>=0?'After expenses':'Loss today';
+  document.getElementById('dProdS').textContent='Bags made today';
+  const totalOwed=S.customers.filter(c=>!c.paid).reduce((s,c)=>s+c.amt,0);
+  const dC=S.customers.filter(c=>!c.paid).length;
+  document.getElementById('dDebt').textContent=fmt(totalOwed);
+  document.getElementById('dDebtS').textContent=dC+' customer'+(dC!==1?'s':'');
+  const dt=document.getElementById('dTxns');
+  const tx=S.transactions.slice(0,5);
+  dt.innerHTML=tx.length?tx.map(t=>`<tr><td class="tn">${t.desc}</td><td class="${t.type==='sale'?'tg':'tr'}">₦${t.amt.toLocaleString()}</td><td><span class="pill ${t.type==='sale'?'pg':'pr'}">${t.type==='sale'?'Sale':'Expense'}</span></td></tr>`).join(''):'<tr><td colspan="3" style="text-align:center;color:var(--muted);font-size:12px;padding:16px">No transactions yet</td></tr>';
+  const dd=document.getElementById('dDebts');
+  const unpaid=S.customers.filter(c=>!c.paid).slice(0,5);
+  dd.innerHTML=unpaid.length?unpaid.map(c=>`<tr><td class="tn">${c.name}</td><td class="${c.overdue?'tr':'tw'}">₦${c.amt.toLocaleString()}</td><td><span class="pill ${c.overdue?'pr':'pw'}">${c.overdue?'Overdue':'Pending'}</span></td></tr>`).join(''):'<tr><td colspan="3" style="text-align:center;color:var(--muted);font-size:12px;padding:16px">No outstanding debts</td></tr>';
+}
+
+// ═══════════════════════════════════════════
+// TRANSACTIONS
+// ═══════════════════════════════════════════
+function saveTxn(){
+  const type=document.getElementById('mtType').value;
+  const desc=document.getElementById('mtDesc').value.trim();
+  const amt=parseFloat(document.getElementById('mtAmt').value);
+  const date=document.getElementById('mtDate').value||new Date().toISOString().slice(0,10);
+  if(!desc||!amt){ toast('Fill description and amount.','err'); return; }
+  S.transactions.unshift({date,desc,type,amt});
+  closeM('mTxn');
+  ['mtDesc','mtAmt','mtNote'].forEach(id=>document.getElementById(id).value='');
+  updateSalesPage(); updateDash(); updateReports(); updateAI();
+  logAct(`💰 ${currentUser?.name||'User'} added ${type}: ${desc} — ₦${amt.toLocaleString()}`,'txn');
+  addNotif(type==='sale'?'New Sale':'New Expense',desc+' — ₦'+amt.toLocaleString(),type==='sale'?'var(--green)':'var(--red)');
+  toast(type==='sale'?'Sale saved!':'Expense saved!');
+}
+function updateSalesPage(){
+  const sales=S.transactions.filter(t=>t.type==='sale');
+  const exps=S.transactions.filter(t=>t.type==='expense');
+  const tR=sales.reduce((s,t)=>s+t.amt,0);
+  const tE=exps.reduce((s,t)=>s+t.amt,0);
+  const tP=tR-tE;
+  const mg=tR?((tP/tR)*100).toFixed(1)+'%':'—';
+  document.getElementById('sRev').textContent='₦'+tR.toLocaleString();
+  document.getElementById('sExp').textContent='₦'+tE.toLocaleString();
+  document.getElementById('sProfit').textContent='₦'+tP.toLocaleString();
+  document.getElementById('sMargin').textContent=mg;
+  const tbody=document.getElementById('txnBody');
+  if(!S.transactions.length){ tbody.innerHTML='<tr><td colspan="5"><div class="es"><i class="ti ti-chart-bar"></i><h3>No transactions yet</h3><p>Click <strong>Add Transaction</strong> to record your first entry.</p></div></td></tr>'; return; }
+  tbody.innerHTML=S.transactions.map((t,i)=>`<tr data-type="${t.type}"><td>${t.date}</td><td class="tn">${t.desc}</td><td class="${t.type==='sale'?'tg':'tr'}">₦${t.amt.toLocaleString()}</td><td><span class="pill ${t.type==='sale'?'pg':'pr'}">${t.type==='sale'?'Sale':'Expense'}</span></td><td><button class="btn btn-outline btn-sm" onclick="delTxn(${i})" title="Delete"><i class="ti ti-trash"></i></button></td></tr>`).join('');
+}
+function delTxn(i){ S.transactions.splice(i,1); updateSalesPage(); updateDash(); updateReports(); updateAI(); toast('Transaction deleted.'); }
+function filterTxns(f){ document.querySelectorAll('#txnBody tr').forEach(r=>{ if(r.dataset.type) r.style.display=(f==='all'||r.dataset.type===f)?'':'none'; }); }
+
+// ═══════════════════════════════════════════
+// DEBTS
+// ═══════════════════════════════════════════
+function saveDebt(){
+  const name=document.getElementById('mdName').value.trim();
+  const phone=document.getElementById('mdPhone').value.trim();
+  const amt=parseFloat(document.getElementById('mdAmt').value);
+  const due=document.getElementById('mdDue').value;
+  if(!name||!amt){ toast('Fill name and amount.','err'); return; }
+  const overdue=due&&new Date(due)<new Date();
+  S.customers.unshift({name,phone,amt,due,overdue,paid:false});
+  closeM('mDebt');
+  ['mdName','mdPhone','mdAmt','mdArea'].forEach(id=>document.getElementById(id).value='');
+  updateDebtPage(); updateDash(); updateAI();
+  logAct(`👤 ${currentUser?.name||'User'} added customer debt: ${name} — ₦${amt.toLocaleString()}`,'debt');
+  addNotif('New Debt',name+' owes ₦'+amt.toLocaleString(),'var(--warn)');
+  toast('Customer debt added!');
+}
+function updateDebtPage(){
+  const unpaid=S.customers.filter(c=>!c.paid);
+  const total=unpaid.reduce((s,c)=>s+c.amt,0);
+  document.getElementById('dbtTotal').textContent='₦'+total.toLocaleString();
+  document.getElementById('dbtActive').textContent=unpaid.length;
+  document.getElementById('dbtPaid').textContent=S.paidCount;
+  const tbody=document.getElementById('debtBody');
+  if(!S.customers.length){ tbody.innerHTML='<tr><td colspan="6"><div class="es"><i class="ti ti-credit-card-off"></i><h3>No debts recorded</h3><p>Click <strong>Add Customer</strong> to record a debt.</p></div></td></tr>'; return; }
+  tbody.innerHTML=S.customers.map((c,i)=>{
+    const dl=c.due?new Date(c.due).toLocaleDateString('en-GB',{month:'short',day:'numeric'}):'—';
+    const sp=c.paid?'<span class="pill pg">Paid</span>':c.overdue?'<span class="pill pr">Overdue</span>':'<span class="pill pw">Pending</span>';
+    const ab=c.paid?`<button class="btn btn-outline btn-sm" disabled style="opacity:.4"><i class="ti ti-check"></i>Paid</button>`:`<button class="btn btn-success btn-sm" onclick="markPaid(${i})"><i class="ti ti-check"></i>Mark Paid</button>`;
+    return `<tr><td class="tn">${c.name}</td><td>${c.phone||'—'}</td><td class="${c.paid?'tg':c.overdue?'tr':'tw'}">₦${c.amt.toLocaleString()}</td><td>${dl}</td><td>${sp}</td><td>${ab}</td></tr>`;
+  }).join('');
+}
+function markPaid(i){
+  const c=S.customers[i]; c.paid=true; S.paidCount++;
+  updateDebtPage(); updateDash(); updateAI();
+  logAct(`✅ ${currentUser?.name||'User'} marked ${c.name} as paid — ₦${c.amt.toLocaleString()}`,'paid');
+  addNotif('Debt Paid',c.name+' — ₦'+c.amt.toLocaleString()+' received','var(--green)');
+  toast('Payment recorded for '+c.name+'!');
+}
+
+// ═══════════════════════════════════════════
+// WORKERS
+// ═══════════════════════════════════════════
+const WC=['rgba(59,130,246,.15)|#3b82f6','rgba(16,185,129,.15)|#10b981','rgba(245,158,11,.15)|#f59e0b','rgba(139,92,246,.15)|#8b5cf6','rgba(6,182,212,.15)|#06b6d4','rgba(244,63,94,.15)|#f43f5e'];
+function saveWorker(){
+  const name=document.getElementById('mwName').value.trim();
+  const role=document.getElementById('mwRole').value.trim();
+  const phone=document.getElementById('mwPhone').value.trim();
+  const shift=document.getElementById('mwShift').value;
+  if(!name||!role){ toast('Fill name and role.','err'); return; }
+  const init=name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+  const [bg,fg]=WC[S.workers.length%WC.length].split('|');
+  S.workers.push({name,role,phone,shift,init,bg,fg,att:[1,1,1,1,1]});
+  closeM('mWork');
+  ['mwName','mwRole','mwPhone'].forEach(id=>document.getElementById(id).value='');
+  updateWorkersPage();
+  logAct(`👷 ${currentUser?.name||'User'} added worker: ${name} (${role})`,'worker');
+  addNotif('New Worker',name+' added as '+role,'var(--purple)');
+  toast(name+' added to staff!');
+}
+function updateWorkersPage(){
+  const total=S.workers.length;
+  document.getElementById('wTotal').textContent=total;
+  document.getElementById('wPresent').textContent=total;
+  document.getElementById('wAbsent').textContent=0;
+  const list=document.getElementById('workerList');
+  if(!total){ list.innerHTML='<div class="es"><i class="ti ti-users"></i><h3>No workers added yet</h3><p>Add staff members to track attendance.</p><button class="btn btn-primary" style="margin-top:4px" onclick="openM(\'mWork\')"><i class="ti ti-user-plus"></i>Add Worker</button></div>'; return; }
+  list.innerHTML='<div style="display:flex;justify-content:flex-end;gap:5px;margin-bottom:8px">'+['M','T','W','T','F'].map(d=>`<span style="font-size:9px;color:var(--muted);width:9px;text-align:center">${d}</span>`).join('')+'</div>'+S.workers.map(w=>`<div class="wr"><div class="wav" style="background:${w.bg};color:${w.fg}">${w.init}</div><div><div class="wname">${w.name}</div><div class="wrole">${w.role}</div></div><div class="adots">${w.att.map(a=>`<div class="adot" style="background:${a?'var(--green)':'var(--red)'}"></div>`).join('')}</div></div>`).join('');
+}
+
+// ═══════════════════════════════════════════
+// COMPLAINTS
+// ═══════════════════════════════════════════
+function saveComp(){
+  const title=document.getElementById('mcTitle').value.trim();
+  const by=document.getElementById('mcBy').value.trim()||'Unknown';
+  const area=document.getElementById('mcArea').value.trim();
+  if(!title){ toast('Enter a complaint title.','err'); return; }
+  const full=area?title+' — '+area:title;
+  const now=new Date().toLocaleString('en-GB',{hour:'2-digit',minute:'2-digit',day:'numeric',month:'short'});
+  S.complaints.unshift({title:full,by,time:now,resolved:false});
+  closeM('mComp');
+  ['mcTitle','mcBy','mcArea','mcDetail'].forEach(id=>document.getElementById(id).value='');
+  updateCpPage();
+  logAct(`⚠️ Complaint logged: "${full}" — by ${by}`,'comp');
+  addNotif('New Complaint',full,'var(--red)');
+  toast('Complaint logged!');
+}
+function updateCpPage(){
+  const open=S.complaints.filter(c=>!c.resolved).length;
+  const resolved=S.complaints.filter(c=>c.resolved).length;
+  document.getElementById('cpOpen').textContent=open;
+  document.getElementById('cpResolved').textContent=resolved;
+  document.getElementById('cBadge').textContent=open;
+  const list=document.getElementById('cpList');
+  if(!S.complaints.length){ list.innerHTML='<div class="es"><i class="ti ti-alert-circle"></i><h3>No complaints logged</h3><p>Log customer issues to track and resolve them quickly.</p><button class="btn btn-primary" style="margin-top:4px" onclick="openM(\'mComp\')"><i class="ti ti-plus"></i>Log First Complaint</button></div>'; return; }
+  list.innerHTML=S.complaints.map((c,i)=>`<div class="crow"><div class="cdot" style="background:${c.resolved?'var(--green)':'var(--red)'}"></div><div style="flex:1"><div class="ctxt">${c.title}</div><div class="cmeta">${c.time} &nbsp;·&nbsp; ${c.by} &nbsp;·&nbsp; <span class="pill ${c.resolved?'pg':'pr'}">${c.resolved?'Resolved':'Open'}</span></div></div>${c.resolved?'<button class="btn btn-outline btn-sm" disabled style="opacity:.4">Done</button>':`<button class="btn btn-success btn-sm" onclick="resolveComp(${i})"><i class="ti ti-check"></i>Resolve</button>`}</div>`).join('');
+}
+function resolveComp(i){
+  const c=S.complaints[i]; c.resolved=true;
+  updateCpPage();
+  logAct(`✅ Complaint resolved: "${c.title}"`,'resolve');
+  addNotif('Complaint Resolved',c.title,'var(--green)');
+  toast('Complaint resolved!');
+}
+
+// ═══════════════════════════════════════════
+// REPORTS
+// ═══════════════════════════════════════════
+let rChart;
+function updateReports(){
+  const has=S.records.length>0;
+  document.getElementById('rptEmpty').style.display=has?'none':'block';
+  document.getElementById('rptLive').style.display=has?'block':'none';
+  if(!has) return;
+  const tR=S.records.reduce((s,r)=>s+r.rev,0);
+  const tE=S.records.reduce((s,r)=>s+r.exp,0);
+  const tP=tR-tE;
+  const tB=S.records.reduce((s,r)=>s+r.sold,0);
+  const mg=tR?((tP/tR)*100).toFixed(1)+'%':'—';
+  document.getElementById('rRev').textContent='₦'+tR.toLocaleString();
+  document.getElementById('rExp').textContent='₦'+tE.toLocaleString();
+  document.getElementById('rProfit').textContent='₦'+tP.toLocaleString();
+  document.getElementById('rBags').textContent=tB.toLocaleString();
+  document.getElementById('rMargin').textContent=mg;
+  const labels=S.records.map(r=>r.date).reverse();
+  const revs=S.records.map(r=>r.rev).reverse();
+  const exps=S.records.map(r=>r.exp).reverse();
+  const ctx=document.getElementById('rptChart');
+  if(rChart) rChart.destroy();
+  rChart=new Chart(ctx,{type:'bar',data:{labels,datasets:[{label:'Revenue',data:revs,backgroundColor:'rgba(59,130,246,.75)',borderRadius:5,borderSkipped:false},{label:'Expenses',data:exps,backgroundColor:'rgba(244,63,94,.65)',borderRadius:5,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,labels:{color:'#71717a',font:{size:11},boxWidth:11}}},scales:{x:{ticks:{color:'#52525b',font:{size:10}},grid:{color:'rgba(255,255,255,.04)'}},y:{ticks:{color:'#52525b',font:{size:10},callback:v=>v>=1000?'₦'+(v/1000).toFixed(0)+'K':'₦'+v},grid:{color:'rgba(255,255,255,.04)'}}}}});
+}
+
+// ═══════════════════════════════════════════
+// AI ASSISTANT
+// ═══════════════════════════════════════════
+let aiOpen=false;
+function toggleAI(){
+  aiOpen=!aiOpen;
+  document.getElementById('aiPanel').classList.toggle('on',aiOpen);
+  if(aiOpen) updateAI();
+}
+function updateAI(){
+  const body=document.getElementById('aiBody');
+  const lat=S.records[0];
+  const tR=S.records.reduce((s,r)=>s+r.rev,0);
+  const tE=S.records.reduce((s,r)=>s+r.exp,0);
+  const tP=tR-tE;
+  const tD=S.customers.filter(c=>!c.paid).reduce((s,c)=>s+c.amt,0);
+  const openCp=S.complaints.filter(c=>!c.resolved).length;
+  const mg=tR?((tP/tR)*100).toFixed(1):null;
+  const tips=[];
+  if(S.records.length>=2){
+    const prev=S.records[1];
+    const diff=prev.profit!==0?(((lat.profit-prev.profit)/Math.abs(prev.profit))*100).toFixed(1):0;
+    tips.push({i:'ti-trending-up',c:'var(--green)',t:`Profit ${diff>=0?'up':'down'} ${Math.abs(diff)}% vs previous entry.`});
+  }
+  if(tD>0) tips.push({i:'ti-alert-triangle',c:'var(--warn)',t:`₦${tD.toLocaleString()} outstanding from ${S.customers.filter(c=>!c.paid).length} customer(s). Follow up today.`});
+  if(openCp>0) tips.push({i:'ti-message-circle',c:'var(--red)',t:`${openCp} unresolved complaint(s). Resolve quickly to protect your reputation.`});
+  if(mg&&parseFloat(mg)>80) tips.push({i:'ti-star',c:'var(--blue)',t:`Excellent ${mg}% profit margin. Keep expenses tight to maintain this.`});
+  if(!S.records.length) tips.push({i:'ti-plus',c:'var(--muted)',t:'Add your first daily entry to see personalised insights here.'});
+  const h=new Date().getHours();
+  const gr=h<12?'Good morning':h<17?'Good afternoon':'Good evening';
+  body.innerHTML=`
+    <div style="font-size:12px;color:var(--muted);margin-bottom:10px">${gr}, ${currentUser?.name?.split(' ')[0]||'there'}.</div>
+    ${lat?`<div style="font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">Latest Entry</div>
+    <div class="aist"><span class="ail">Revenue</span><span class="aiv tg">₦${lat.rev.toLocaleString()}</span></div>
+    <div class="aist"><span class="ail">Expenses</span><span class="aiv tr">₦${lat.exp.toLocaleString()}</span></div>
+    <div class="aist"><span class="ail">Profit</span><span class="aiv tb">₦${lat.profit.toLocaleString()}</span></div>
+    <div class="aist"><span class="ail">Bags Sold</span><span class="aiv">${lat.sold}</span></div>
+    ${mg?`<div class="aist"><span class="ail">Margin</span><span class="aiv" style="color:${parseFloat(mg)>70?'var(--green)':'var(--warn)'}">${mg}%</span></div>`:''}
+    `:''}
+    ${tips.length?`<div class="aitips"><div class="aitips-title">Smart Tips</div>${tips.map(t=>`<div class="aitip"><i class="ti ${t.i}" style="color:${t.c}"></i><span>${t.t}</span></div>`).join('')}</div>`:''}`;
+}
+
+// ═══════════════════════════════════════════
+// WHATSAPP REPORT
+// ═══════════════════════════════════════════
+function genWA(){
+  const d=new Date().toLocaleDateString('en-GB');
+  const r=S.records[0];
+  const tD=S.customers.filter(c=>!c.paid).reduce((s,c)=>s+c.amt,0);
+  const oc=S.complaints.filter(c=>!c.resolved).length;
+  const msg=encodeURIComponent(
+    `📊 *OMOLADE ORI TABLE WATER*\n*Daily Business Report — ${d}*\n\n`+
+    (r?`💰 Revenue: ₦${r.rev.toLocaleString()}\n📦 Bags Sold: ${r.sold}\n🏭 Bags Produced: ${r.prod}\n💸 Expenses: ₦${r.exp.toLocaleString()}\n✅ Net Profit: ₦${r.profit.toLocaleString()}\n\n`:'ℹ️ No daily entry recorded yet.\n\n')+
+    `📉 Outstanding Debt: ₦${tD.toLocaleString()}\n👥 Staff Registered: ${S.workers.length}\n⚠️ Open Complaints: ${oc}\n📋 Total Entries: ${S.records.length}\n\n`+
+    `_Generated by Omolade Ori Table Water Private Portal_`
+  );
+  window.open('https://wa.me/?text='+msg,'_blank');
+  logAct('📱 '+(currentUser?.name||'User')+' generated WhatsApp report','txn');
+  toast('WhatsApp report opened!');
+}
+
+// ═══════════════════════════════════════════
+// TOUR
+// ═══════════════════════════════════════════
+const TOUR=[
+  {sel:'.logo-area',badge:'Welcome 👋',title:'Your Private Business Platform',body:'Welcome to <strong>Omolade Ori Table Water</strong> Private Business Operations Platform. You\'re the only people who can access this. Let\'s take a 60-second tour.',pos:'right'},
+  {sel:'#nv-dashboard',badge:'Step 1 of 9',title:'Dashboard — Business Overview',body:'This page shows everything at a glance — <strong>today\'s revenue, bags sold, profit, expenses, debts and stock</strong>. Updates every time you add data.',pos:'right'},
+  {sel:'#nv-production',badge:'Step 2 of 9',title:'Daily Entry — Record Every Day',body:'Every day, come here to enter <strong>bags produced, sold, returned</strong>, your total revenue and expenses. The profit is calculated instantly.',pos:'right'},
+  {sel:'#nv-sales',badge:'Step 3 of 9',title:'Sales & Expenses — Finance Log',body:'Full list of every <strong>sale and expense</strong>. Add entries with the button. Filter by type. Delete if needed. Profit margin is shown automatically.',pos:'right'},
+  {sel:'#nv-debts',badge:'Step 4 of 9',title:'Customers & Debts — Track Who Owes',body:'Add customers who owe money. Set a <strong>due date</strong>, watch the status update (Pending → Late → Overdue). Click <strong>Mark Paid</strong> when settled.',pos:'right'},
+  {sel:'#nv-workers',badge:'Step 5 of 9',title:'Workers — Staff Attendance',body:'Add all your <strong>staff members</strong>. Their weekly attendance is shown as dots — green for present, red for absent.',pos:'right'},
+  {sel:'#nv-complaints',badge:'Step 6 of 9',title:'Complaints — Track Customer Issues',body:'When a customer complains, <strong>log it here</strong>. Mark it resolved when fixed. The red badge on the sidebar shows how many are open.',pos:'right'},
+  {sel:'#nv-activity',badge:'Step 7 of 9',title:'Activity Log — Full Audit Trail',body:'Every single action is <strong>recorded here automatically</strong> — who logged in, who added an entry, who marked a debt paid. Like GitHub history.',pos:'right'},
+  {sel:'#waBtn',badge:'Step 8 of 9',title:'WhatsApp Report',body:'One click generates a <strong>complete business summary</strong> as a WhatsApp message. Send it to the owner or the team instantly.',pos:'bottom'},
+  {sel:'#addEntryBtn',badge:'Step 9 of 9 🎉',title:"You're Ready!",body:'Click <strong>"Add Today\'s Entry"</strong> to start recording. Once you save your first record, the dashboard fills up with real data. You\'ve got this!',pos:'bottom'},
+];
+
+let tStep=0,tActive=false;
+function startTour(){
+  document.getElementById('wm').style.display='none';
+  tActive=true; tStep=0;
+  document.getElementById('tveil').classList.add('on');
+  gp('dashboard',document.getElementById('nv-dashboard'));
+  setTimeout(renderTour,300);
+}
+function renderTour(){
+  const step=TOUR[tStep];
+  const el=document.querySelector(step.sel);
+  if(!el){tNext();return;}
+  document.getElementById('tbadgeTxt').textContent=step.badge;
+  document.getElementById('ttitle').textContent=step.title;
+  document.getElementById('tbody').innerHTML=step.body;
+  document.getElementById('tnext').innerHTML=tStep<TOUR.length-1?'Next <i class="ti ti-chevron-right"></i>':'<i class="ti ti-check"></i> Finish';
+  document.getElementById('tprev').style.display=tStep>0?'flex':'none';
+  buildTDots();
+  el.scrollIntoView({behavior:'smooth',block:'nearest'});
+  setTimeout(()=>posTour(el,step.pos),120);
+  document.getElementById('tspot').style.display='block';
+  document.getElementById('tbub').style.display='block';
+}
+function buildTDots(){
+  const d=document.getElementById('tdots');
+  d.innerHTML='';
+  TOUR.forEach((_,i)=>{const dot=document.createElement('div');dot.className='tdot'+(i===tStep?' on':'');d.appendChild(dot);});
+}
+function posTour(el,pos){
+  const r=el.getBoundingClientRect();
+  const sp=document.getElementById('tspot');
+  const bb=document.getElementById('tbub');
+  const pad=8;
+  sp.style.cssText=`left:${r.left-pad}px;top:${r.top-pad}px;width:${r.width+pad*2}px;height:${r.height+pad*2}px;display:block`;
+  const bW=296,bH=250,vW=window.innerWidth,vH=window.innerHeight;
+  let left,top;
+  if(pos==='right'){ left=Math.min(r.right+16,vW-bW-16); top=Math.min(Math.max(r.top,16),vH-bH-16); }
+  else { left=Math.min(Math.max(r.left,16),vW-bW-16); top=r.bottom+12; if(top+bH>vH-16) top=r.top-bH-12; }
+  if(vW<640){ left=16; top=Math.min(r.bottom+12,vH-bH-16); if(top<16) top=16; }
+  bb.style.cssText=`left:${left}px;top:${top}px;display:block`;
+}
+function tNext(){ tStep<TOUR.length-1?( tStep++, renderTour() ):skipTour(); }
+function tPrev(){ if(tStep>0){tStep--;renderTour();} }
+function skipTour(){
+  tActive=false;
+  document.getElementById('tveil').classList.remove('on');
+  document.getElementById('tspot').style.display='none';
+  document.getElementById('tbub').style.display='none';
+  document.getElementById('wm').style.display='none';
+  toast('Tour complete! Start by adding your first daily entry.');
+}
+</script>
+</body>
+</html>
